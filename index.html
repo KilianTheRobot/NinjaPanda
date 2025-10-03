@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NinjaPanda Runner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>NinjaPanda Runner</h1>
+    <p>Tippe / drücke Leertaste, um zu springen. Vermeide Hindernisse!</p>
+  </header>
+
+  <main>
+    <div id="game-wrap">
+      <canvas id="game-canvas" width="900" height="400"></canvas>
+      <div id="hud">
+        <div id="score">Score: 0</div>
+        <div id="highscore">Best: 0</div>
+      </div>
+      <div id="overlay" class="hidden">
+        <div id="overlay-content">
+          <h2 id="overlay-title">Game Over</h2>
+          <p id="overlay-score">Score: 0</p>
+          <button id="restart">Neu starten</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <small>Erstellt für GitHub Pages — ersetze <code>assets/panda.png</code> mit deinem Panda-Bild (optional)</small>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
