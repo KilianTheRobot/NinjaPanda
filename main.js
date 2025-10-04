@@ -5,6 +5,7 @@
   const scoreEl = document.getElementById('score');
   const highscoreEl = document.getElementById('highscore');
   const overlay = document.getElementById('overlay');
+  const overlayContent = document.getElementById('overlay-content');
   const overlayTitle = document.getElementById('overlay-title');
   const overlayScore = document.getElementById('overlay-score');
   const restartBtn = document.getElementById('restart');
@@ -68,6 +69,8 @@
     player.y = groundY() - player.h;
     player.vy = 0;
     player.onGround = true;
+    overlay.style.display = 'none'; // Komplett ausblenden
+    overlayContent.style.visibility = 'collapse'; // Overlay-Content ausblenden
     overlay.classList.add('hidden');
     lastTime = performance.now();
     requestAnimationFrame(loop);
@@ -75,6 +78,8 @@
 
   function gameOver(){
     running = false;
+    overlay.style.display = ''; // Wieder anzeigen
+    overlayContent.style.visibility = 'visible'; // Overlay-Content wieder anzeigen
     overlay.classList.remove('hidden');
     overlayTitle.textContent = 'Game Over';
     overlayScore.textContent = 'Score: ' + Math.floor(score);
@@ -239,10 +244,25 @@
   });
 
   // touch / click controls
-  canvas.addEventListener('touchstart', (e)=>{ e.preventDefault(); jump(); });
-  canvas.addEventListener('mousedown', ()=>{ jump(); });
+  canvas.addEventListener('touchstart', (e)=>{ 
+    e.preventDefault(); 
+    if(!running) {
+      reset();
+    } else {
+      jump();
+    }
+  });
+  canvas.addEventListener('mousedown', ()=>{ 
+    if(!running) {
+      reset();
+    } else {
+      jump();
+    }
+  });
 
-  restartBtn.addEventListener('click', ()=>{ reset(); });
+  restartBtn.addEventListener('click', ()=>{ 
+    reset();
+  });
 
   // initial render and start
   render();
